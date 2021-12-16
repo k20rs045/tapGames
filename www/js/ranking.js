@@ -20,16 +20,15 @@ function checkRanking() {
     // **********【問題２】ランキングを表示しよう！**********
     let ncmb = new NCMB(APPLICATION_KEY,CLIENT_KEY);
     let DS = ncmb.DataStore("GameScore");
-    DS.order("score",true).limit(5).checkRanking()
-    .then (function(results){}      
-    for (i=0;i<DS.length;i++){
-      var dataName = 
-    }
-      setData(results);
-    })
-    .catch(function(error){
-      console.log("検索に失敗しました。");
-    })
+    DS.order("score",true).limit(5).fetchAll()
+      .then(function(results){
+      console.log("検索に成功しました。");
+        setData(results);
+      })
+      .catch(function(error){
+        console.log("検索に失敗しました。エラー:" +error);
+      });
+
    
     // ******************************************************
 }
